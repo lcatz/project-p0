@@ -1,29 +1,28 @@
-using System;
 using System.Collections.Generic;
 
 namespace PizzaWorld.Domain.Models
 {
-    public class Store
+  public class Store
+  {
+    public List<Order> Orders { get; set; }
+
+    public void CreateOrder()
     {
-      public List<Order> Orders {get; set; }
-      public void CreateOrder()
-      {
-        Orders.Add(new Order());
-      }  
+      Orders.Add(new Order());
+    }
 
-      bool DeleteOrder(Order order)
+    bool DeleteOrder(Order order)
+    {
+      try
       {
-        try
-        {
-            Orders.Remove(order);
+        Orders.Remove(order);
 
-            return true;
-        }
-        catch
-        {
-           return false;
-        }
-        
+        return true;
+      }
+      catch
+      {
+        return false;
       }
     }
+  }
 }
