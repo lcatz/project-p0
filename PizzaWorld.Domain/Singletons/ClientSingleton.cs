@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
+using PizzaWorld.Domain.Abstracts;
 using PizzaWorld.Domain.Models;
 
 namespace PizzaWorld.Domain.Singletons
@@ -26,7 +27,7 @@ namespace PizzaWorld.Domain.Singletons
     }
 
     public List<Store> Stores { get; set; }
-
+  public List<APizzaModel> Pizzas { get; set;}
     private ClientSingleton()
     {
       Read();
@@ -40,6 +41,7 @@ namespace PizzaWorld.Domain.Singletons
 
     public Store SelectStore()
     {
+      
       int.TryParse(Console.ReadLine(), out int input); // 0, selection
 
       return Stores.ElementAtOrDefault(input);

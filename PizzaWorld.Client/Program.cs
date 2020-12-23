@@ -11,6 +11,8 @@ namespace PizzaWorld.Client
     private static readonly ClientSingleton _client = ClientSingleton.Instance;
     private readonly ClientSingleton _client2;
 
+    private static readonly SqlClient _sql = new SqlClient();
+
     public Program()
     {
       _client2 = ClientSingleton.Instance;
@@ -23,7 +25,17 @@ namespace PizzaWorld.Client
 
     static void PrintAllStores()
     {
+      Console.WriteLine("\nPlease select a store.\n");//might be a better way/place to put this?
       foreach (var store in _client.Stores)
+      {
+        System.Console.WriteLine(store);
+      }
+    }
+
+     static void PrintAllStoresWithEF()
+    {
+      Console.WriteLine("\nPlease select a store.\n");//might be a better way/place to put this?
+      foreach (var store in _sql.ReadStores())
       {
         System.Console.WriteLine(store);
       }
@@ -34,6 +46,7 @@ namespace PizzaWorld.Client
       var user = new User();
 
       PrintAllStores();
+      PrintAllStoresWithEF();
 
       user.SelectedStore = _client.SelectStore();
       user.SelectedStore.CreateOrder();

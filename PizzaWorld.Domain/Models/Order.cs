@@ -5,7 +5,7 @@ using PizzaWorld.Domain.Factories;
 
 namespace PizzaWorld.Domain.Models
 {
-  public class Order
+  public class Order : AEntity
   {
     private GenericPizzaFactory _pizzaFactory = new GenericPizzaFactory();
 
