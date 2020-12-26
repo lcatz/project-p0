@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using PizzaWorld.Domain.Models;
 
 namespace PizzaWorld.Domain.Abstracts
 {

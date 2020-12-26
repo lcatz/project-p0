@@ -56,7 +56,7 @@ namespace PizzaWorld.Client
       // while user.SelectPizza()
       user.Orders.Last().MakeMeatPizza();
       user.Orders.Last().MakeMeatPizza();
-    
+      _sql.Update(user.SelectedStore.Orders.Last());
       System.Console.WriteLine(user);
     }
   }

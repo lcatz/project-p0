@@ -44,6 +44,11 @@ namespace PizzaWorld.Client
             _db.SaveChanges();
         }
 
+        public void Update(Order order)
+        {
+            _db.SaveChanges();
+        }
+
         public void CreateStore()
         {
             Save(new Store());

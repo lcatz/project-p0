@@ -25,6 +25,7 @@ namespace PizzaWorld.Storing
             builder.Entity<Order>().HasKey(o => o.EntityID);
         
             SeedData(builder);
+        
         }
 
         protected void SeedData(ModelBuilder builder)
@@ -36,9 +37,8 @@ namespace PizzaWorld.Storing
                 new Store() { EntityID = 3, Name = "Three"}
             }
             );
-        }
 
-
+        }     
 
     }
 }
