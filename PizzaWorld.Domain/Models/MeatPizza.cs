@@ -6,6 +6,8 @@ namespace PizzaWorld.Domain.Models
 {
   public class MeatPizza : APizzaModel
   {
+
+    
     protected override void AddCrust()
     {
       Crust = "regular";
@@ -18,6 +20,9 @@ namespace PizzaWorld.Domain.Models
 
     protected override void AddToppings()
     {
+      Toppings MeatTop = new Toppings();
+      MeatTop.MeatPizza();
+      
       // Toppings = new List<string>
       // {
       //   "cheese",

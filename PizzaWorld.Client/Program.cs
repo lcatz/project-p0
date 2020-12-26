@@ -20,6 +20,7 @@ namespace PizzaWorld.Client
 
     static void Main(string[] args)
     {
+      _client.ChoosePrompt();
       UserView();
     }
 
@@ -45,16 +46,17 @@ namespace PizzaWorld.Client
     {
       var user = new User();
 
-      PrintAllStores();
+     // PrintAllStores();
       PrintAllStoresWithEF();
 
-      user.SelectedStore = _client.SelectStore();
+      user.SelectedStore = _sql.SelectStore();
       user.SelectedStore.CreateOrder();
+      _sql.Update(user.SelectedStore);
       user.Orders.Add(user.SelectedStore.Orders.Last());
       // while user.SelectPizza()
       user.Orders.Last().MakeMeatPizza();
       user.Orders.Last().MakeMeatPizza();
-
+    
       System.Console.WriteLine(user);
     }
   }

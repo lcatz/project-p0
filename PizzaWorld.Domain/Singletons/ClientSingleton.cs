@@ -56,6 +56,11 @@ namespace PizzaWorld.Domain.Singletons
       xml.Serialize(file, Stores);
     }
 
+    public void ChoosePrompt()
+    {
+       Console.WriteLine("Please Choose a Store");
+    }
+
     private void Read()
     {
       if (!File.Exists(_path))

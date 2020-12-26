@@ -7,7 +7,7 @@ namespace PizzaWorld.Domain.Abstracts
   {
     public string Crust { get; set; }
     public string Size { get; set; }
-   // public List<string> Toppings { get; set; }
+  
 
     protected APizzaModel()
     {
