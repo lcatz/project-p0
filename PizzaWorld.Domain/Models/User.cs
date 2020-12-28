@@ -24,7 +24,7 @@ namespace PizzaWorld.Domain.Models
         sb.AppendLine(p.ToString());
       }
 
-      return $"you have selected this store: {SelectedStore} and ordered these pizzas: {sb.ToString()}"; // string interpolation
+      return $"\nYou have selected this store: {SelectedStore} \nYour Orders: \n{sb.ToString()}\n"; // string interpolation
       //return "I have selected this store: " + SelectedStore.ToString(); // string concatenation
     }
   }

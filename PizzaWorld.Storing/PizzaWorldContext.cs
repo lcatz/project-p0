@@ -12,9 +12,15 @@ namespace PizzaWorld.Storing
 
         public DbSet<APizzaModel> Pizzas { get; set; }
 
+        public DbSet<AToppingModel> Toppings { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        
+
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-           builder.UseSqlServer("Server=tcp:p0secondserver.database.windows.net,1433;Initial Catalog=lcatPizzaWorldDB;Persist Security Info=False;User ID=sysadmin;Password={};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"); 
+           builder.UseSqlServer("Server=tcp:lcatpizzaworld.database.windows.net,1433;Initial Catalog=lcatPizzaWorldDB;Persist Security Info=False;User ID=sysadmin;Password=Abcd1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"); 
         }
         
         protected override void OnModelCreating(ModelBuilder builder)
@@ -23,6 +29,7 @@ namespace PizzaWorld.Storing
             builder.Entity<User>().HasKey(u => u.EntityID);
             builder.Entity<APizzaModel>().HasKey(p => p.EntityID);
             builder.Entity<Order>().HasKey(o => o.EntityID);
+            builder.Entity<AToppingModel>().HasKey(t => t.EntityID);
         
             SeedData(builder);
         

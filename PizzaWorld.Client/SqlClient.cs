@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PizzaWorld.Domain.Abstracts;
 using PizzaWorld.Domain.Models;
 using PizzaWorld.Storing;
 
@@ -39,15 +40,33 @@ namespace PizzaWorld.Client
           // _db.SaveChanges();
         }
 
+        // public void CreateUser()
+        // {
+        //     _db.Add(new User { Url = "http://blogs.msdn.com/adonet" });
+        //     _db.SaveChanges();
+        //     return 
+        // }
+
         public void Update(Store store)
         {
             _db.SaveChanges();
         }
 
+
         public void Update(Order order)
         {
             _db.SaveChanges();
+            
         }
+
+        public void CreateUser(Store Select)
+        {
+            _db.Add(new User { SelectedStore = Select });
+            _db.SaveChanges();
+             
+        }
+
+
 
         public void CreateStore()
         {
@@ -60,7 +79,6 @@ namespace PizzaWorld.Client
 
             return ReadOne(input);
         }
-
 
     }
 }

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaWorld.Storing;
 
 namespace PizzaWorld.Storing.Migrations
 {
     [DbContext(typeof(PizzaWorldContext))]
-    partial class PizzaWorldContextModelSnapshot : ModelSnapshot
+    [Migration("20201228021632_pizzamodel3")]
+    partial class pizzamodel3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -34,9 +36,6 @@ namespace PizzaWorld.Storing.Migrations
 
                     b.Property<long?>("OrderEntityID")
                         .HasColumnType("bigint");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Size")
                         .HasColumnType("nvarchar(max)");
@@ -76,7 +75,10 @@ namespace PizzaWorld.Storing.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<decimal>("OrderPrice")
+                    b.Property<decimal>("HawaiianPizza")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("MeatPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<long?>("StoreEntityID")
@@ -85,13 +87,16 @@ namespace PizzaWorld.Storing.Migrations
                     b.Property<long?>("UserEntityID")
                         .HasColumnType("bigint");
 
+                    b.Property<decimal>("VeggiePRice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("EntityID");
 
                     b.HasIndex("StoreEntityID");
 
                     b.HasIndex("UserEntityID");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("PizzaWorld.Domain.Models.Store", b =>

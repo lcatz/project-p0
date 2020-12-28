@@ -61,6 +61,13 @@ namespace PizzaWorld.Domain.Singletons
        Console.WriteLine("Please Choose a Store");
     }
 
+    public void PrintPizzaChoice()
+    {
+      Console.WriteLine("Please Select the number of the pizza you want to order. \n Enter 4 to complete your order. \n (1) MeatPizza \n (2) VeggiePizza \n (3) Hawain Pizza");
+    }
+
+   
+
     private void Read()
     {
       if (!File.Exists(_path))

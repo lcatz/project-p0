@@ -5,16 +5,17 @@ using PizzaWorld.Domain.Factories;
 
 namespace PizzaWorld.Domain.Models
 {
-  public class MeatPizza : APizzaModel
+  public class VeggiePizza : APizzaModel
   {
-
+  
+  
   protected override void AddPrice()
   {
-    Price = 30.00M;
+    Price = 20.00M;
   }
   protected override void AddName()
   {
-    Name = "MeatPizza";
+    Name = "VeggiePizza";
   }
 
   protected override void AddCrust()

@@ -35,29 +35,62 @@ namespace PizzaWorld.Client
 
      static void PrintAllStoresWithEF()
     {
-      Console.WriteLine("\nPlease select a store.\n");//might be a better way/place to put this?
+      
       foreach (var store in _sql.ReadStores())
       {
         System.Console.WriteLine(store);
       }
     }
 
+
+
     static void UserView()
     {
-      var user = new User();
-
+      
+      User user = new User();
+     
      // PrintAllStores();
       PrintAllStoresWithEF();
-
       user.SelectedStore = _sql.SelectStore();
+      _sql.CreateUser(user.SelectedStore);
       user.SelectedStore.CreateOrder();
       _sql.Update(user.SelectedStore);
       user.Orders.Add(user.SelectedStore.Orders.Last());
+      string UserChoice = null;
+      do{
+      _client.PrintPizzaChoice();
+      string AddPizza = Console.ReadLine();
+      switch (AddPizza)
+      {
+        case "1":
+        user.Orders.Last().MakeMeatPizza();
+        break;
+
+        case "2":
+        user.Orders.Last().MakeVeggiePizza();
+        break;
+
+        case "3":
+        user.Orders.Last().MakeHawaiianPizza();
+        break;
+        
+        
+        case "4":
+        UserChoice = AddPizza;
+        break;
+
+      }
+    } while (UserChoice != "4");
+
       // while user.SelectPizza()
-      user.Orders.Last().MakeMeatPizza();
-      user.Orders.Last().MakeMeatPizza();
-      _sql.Update(user.SelectedStore.Orders.Last());
+      user.Orders.Last().RemoveHawaiianPizza();
+      user.Orders.Last().RemoveMeatPizza();
+      user.Orders.Last().RemoveVeggiePizza();
+     _sql.Update(user.SelectedStore.Orders.Last());
+      System.Console.WriteLine(user.SelectedStore.Orders.Last());
       System.Console.WriteLine(user);
+      
+    
     }
   }
 }

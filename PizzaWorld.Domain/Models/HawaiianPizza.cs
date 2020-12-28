@@ -5,16 +5,17 @@ using PizzaWorld.Domain.Factories;
 
 namespace PizzaWorld.Domain.Models
 {
-  public class MeatPizza : APizzaModel
+  public class HawaiianPizza : APizzaModel
   {
-
-  protected override void AddPrice()
+    
+    protected override void AddPrice()
   {
-    Price = 30.00M;
+    Price = 10.00M;
   }
+
   protected override void AddName()
   {
-    Name = "MeatPizza";
+    Name = "HawaiianPizza";
   }
 
   protected override void AddCrust()
@@ -32,7 +33,7 @@ namespace PizzaWorld.Domain.Models
             
     }
 
-    public override string ToString()
+     public override string ToString()
         {
           return $"{Name}";
         }
