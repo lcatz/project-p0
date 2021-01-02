@@ -2,7 +2,7 @@
 
 namespace PizzaWorld.Storing.Migrations
 {
-    public partial class pizzamodel7 : Migration
+    public partial class firstmigration3 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,37 +22,60 @@ namespace PizzaWorld.Storing.Migrations
                 name: "PK_Order",
                 table: "Order");
 
+            migrationBuilder.DropPrimaryKey(
+                name: "PK_AToppingModel",
+                table: "AToppingModel");
+
             migrationBuilder.RenameTable(
                 name: "Order",
                 newName: "Orders");
 
+            migrationBuilder.RenameTable(
+                name: "AToppingModel",
+                newName: "Toppings");
+
+            migrationBuilder.RenameColumn(
+                name: "UserEntityID",
+                table: "Orders",
+                newName: "UsersEntityID");
+
+            migrationBuilder.RenameColumn(
+                name: "StoreEntityID",
+                table: "Orders",
+                newName: "StoresEntityID");
+
             migrationBuilder.RenameIndex(
                 name: "IX_Order_UserEntityID",
                 table: "Orders",
-                newName: "IX_Orders_UserEntityID");
+                newName: "IX_Orders_UsersEntityID");
 
             migrationBuilder.RenameIndex(
                 name: "IX_Order_StoreEntityID",
                 table: "Orders",
-                newName: "IX_Orders_StoreEntityID");
+                newName: "IX_Orders_StoresEntityID");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Orders",
                 table: "Orders",
                 column: "EntityID");
 
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_Toppings",
+                table: "Toppings",
+                column: "EntityID");
+
             migrationBuilder.AddForeignKey(
-                name: "FK_Orders_Stores_StoreEntityID",
+                name: "FK_Orders_Stores_StoresEntityID",
                 table: "Orders",
-                column: "StoreEntityID",
+                column: "StoresEntityID",
                 principalTable: "Stores",
                 principalColumn: "EntityID",
                 onDelete: ReferentialAction.Restrict);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Orders_Users_UserEntityID",
+                name: "FK_Orders_Users_UsersEntityID",
                 table: "Orders",
-                column: "UserEntityID",
+                column: "UsersEntityID",
                 principalTable: "Users",
                 principalColumn: "EntityID",
                 onDelete: ReferentialAction.Restrict);
@@ -69,11 +92,11 @@ namespace PizzaWorld.Storing.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Orders_Stores_StoreEntityID",
+                name: "FK_Orders_Stores_StoresEntityID",
                 table: "Orders");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Orders_Users_UserEntityID",
+                name: "FK_Orders_Users_UsersEntityID",
                 table: "Orders");
 
             migrationBuilder.DropForeignKey(
@@ -81,22 +104,45 @@ namespace PizzaWorld.Storing.Migrations
                 table: "Pizzas");
 
             migrationBuilder.DropPrimaryKey(
+                name: "PK_Toppings",
+                table: "Toppings");
+
+            migrationBuilder.DropPrimaryKey(
                 name: "PK_Orders",
                 table: "Orders");
+
+            migrationBuilder.RenameTable(
+                name: "Toppings",
+                newName: "AToppingModel");
 
             migrationBuilder.RenameTable(
                 name: "Orders",
                 newName: "Order");
 
+            migrationBuilder.RenameColumn(
+                name: "UsersEntityID",
+                table: "Order",
+                newName: "UserEntityID");
+
+            migrationBuilder.RenameColumn(
+                name: "StoresEntityID",
+                table: "Order",
+                newName: "StoreEntityID");
+
             migrationBuilder.RenameIndex(
-                name: "IX_Orders_UserEntityID",
+                name: "IX_Orders_UsersEntityID",
                 table: "Order",
                 newName: "IX_Order_UserEntityID");
 
             migrationBuilder.RenameIndex(
-                name: "IX_Orders_StoreEntityID",
+                name: "IX_Orders_StoresEntityID",
                 table: "Order",
                 newName: "IX_Order_StoreEntityID");
+
+            migrationBuilder.AddPrimaryKey(
+                name: "PK_AToppingModel",
+                table: "AToppingModel",
+                column: "EntityID");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Order",

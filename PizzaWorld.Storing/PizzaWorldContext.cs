@@ -16,13 +16,13 @@ namespace PizzaWorld.Storing
 
         public DbSet<Order> Orders { get; set; }
 
-        
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-           builder.UseSqlServer("Server=tcp:lcatpizzaworld.database.windows.net,1433;Initial Catalog=lcatPizzaWorldDB;Persist Security Info=False;User ID=sysadmin;Password={};MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"); 
+           builder.UseSqlServer("Server=tcp:lcatpizzaworld.database.windows.net,1433;Initial Catalog=lcatp0db;Persist Security Info=False;User ID=sysadmin;Password=Abcd1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
-        
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Store>().HasKey(s => s.EntityID);
@@ -30,13 +30,13 @@ namespace PizzaWorld.Storing
             builder.Entity<APizzaModel>().HasKey(p => p.EntityID);
             builder.Entity<Order>().HasKey(o => o.EntityID);
             builder.Entity<AToppingModel>().HasKey(t => t.EntityID);
-        
+
             SeedData(builder);
-        
+
         }
 
         protected void SeedData(ModelBuilder builder)
-        { 
+        {
             builder.Entity<Store>().HasData(new List<Store>
             {
                 new Store() { EntityID = 1, Name = "One" },
@@ -45,7 +45,7 @@ namespace PizzaWorld.Storing
             }
             );
 
-        }     
+        }
 
     }
 }

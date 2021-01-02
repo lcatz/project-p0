@@ -1,4 +1,4 @@
-  
+
 using System.Collections.Generic;
 using System.Linq;
 using PizzaWorld.Domain.Abstracts;
@@ -12,8 +12,12 @@ namespace PizzaWorld.Domain.Models
 
     public List<APizzaModel> Pizzas { get; set; }
 
+    public Store Stores { get; set; }
+
+    public User Users { get; set; }
+
     public decimal OrderPrice { get; set; } = 0.0M;
-  
+
 
     public Order()
     {
@@ -66,7 +70,7 @@ namespace PizzaWorld.Domain.Models
   }
       }
       OrderPrice -= 10.00M;
-    } 
+    }
      OrderPrice -= 30.00M;
     }
 
@@ -89,8 +93,8 @@ namespace PizzaWorld.Domain.Models
 
         public override string ToString()
         {
-            return $"\nYour Order Total Is: ${OrderPrice}\n";
+            return $"Order Total: ${OrderPrice}";
         }
-  
+
   }
 }

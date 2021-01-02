@@ -10,8 +10,8 @@ using PizzaWorld.Storing;
 namespace PizzaWorld.Storing.Migrations
 {
     [DbContext(typeof(PizzaWorldContext))]
-    [Migration("20201228044509_pizzamodel7")]
-    partial class pizzamodel7
+    [Migration("20210101045240_firstmigration2")]
+    partial class firstmigration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -68,7 +68,7 @@ namespace PizzaWorld.Storing.Migrations
 
                     b.HasKey("EntityID");
 
-                    b.ToTable("Toppings");
+                    b.ToTable("AToppingModel");
                 });
 
             modelBuilder.Entity("PizzaWorld.Domain.Models.Order", b =>
@@ -93,7 +93,7 @@ namespace PizzaWorld.Storing.Migrations
 
                     b.HasIndex("UserEntityID");
 
-                    b.ToTable("Orders");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("PizzaWorld.Domain.Models.Store", b =>

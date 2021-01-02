@@ -79,17 +79,17 @@ namespace PizzaWorld.Storing.Migrations
                     b.Property<decimal>("OrderPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<long?>("StoreEntityID")
+                    b.Property<long?>("StoresEntityID")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("UserEntityID")
+                    b.Property<long?>("UsersEntityID")
                         .HasColumnType("bigint");
 
                     b.HasKey("EntityID");
 
-                    b.HasIndex("StoreEntityID");
+                    b.HasIndex("StoresEntityID");
 
-                    b.HasIndex("UserEntityID");
+                    b.HasIndex("UsersEntityID");
 
                     b.ToTable("Orders");
                 });
@@ -152,13 +152,17 @@ namespace PizzaWorld.Storing.Migrations
 
             modelBuilder.Entity("PizzaWorld.Domain.Models.Order", b =>
                 {
-                    b.HasOne("PizzaWorld.Domain.Models.Store", null)
+                    b.HasOne("PizzaWorld.Domain.Models.Store", "Stores")
                         .WithMany("Orders")
-                        .HasForeignKey("StoreEntityID");
+                        .HasForeignKey("StoresEntityID");
 
-                    b.HasOne("PizzaWorld.Domain.Models.User", null)
+                    b.HasOne("PizzaWorld.Domain.Models.User", "Users")
                         .WithMany("Orders")
-                        .HasForeignKey("UserEntityID");
+                        .HasForeignKey("UsersEntityID");
+
+                    b.Navigation("Stores");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("PizzaWorld.Domain.Models.User", b =>
