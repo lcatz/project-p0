@@ -14,7 +14,7 @@ namespace PizzaWorld.Domain.Models
 
     public Store Stores { get; set; }
 
-    public User Users { get; set; }
+    //public User Users { get; set; }
 
     public decimal OrderPrice { get; set; } = 0.0M;
 
@@ -67,10 +67,9 @@ namespace PizzaWorld.Domain.Models
             Pizzas.Remove(pizza);
             x = 1;
         break;
-  }
+        }
       }
-      OrderPrice -= 10.00M;
-    }
+      }
      OrderPrice -= 30.00M;
     }
 
@@ -84,9 +83,9 @@ namespace PizzaWorld.Domain.Models
             Pizzas.Remove(pizza);
             x = 1;
         break;
-  }
       }
-      OrderPrice -= 10.00M;
+      }
+
     }
       OrderPrice -= 20.00M;
     }

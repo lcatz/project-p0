@@ -8,7 +8,10 @@ namespace PizzaWorld.Domain.Models
   public class User : AEntity
   {
     public List<Order> Orders { get; set; }
+    public Order Order { get; set; }
     public Store SelectedStore { get; set; }
+
+    public string Name { get; set; }
 
     public User()
     {
@@ -24,7 +27,7 @@ namespace PizzaWorld.Domain.Models
         sb.AppendLine(p.ToString());
       }
 
-      return $"\nYou have selected this store: {SelectedStore} \nYour Orders: \n{sb.ToString()}\n"; // string interpolation
+      return $"{sb.ToString()}"; // string interpolation
       //return "I have selected this store: " + SelectedStore.ToString(); // string concatenation
     }
   }

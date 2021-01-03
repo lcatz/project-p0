@@ -56,15 +56,16 @@ namespace PizzaWorld.Client
       }
       else if (InitialChoice == "2")
       {
-        User user = new User();
+        Console.WriteLine("Welcome, please enter your name.");
+        string name = Console.ReadLine();
+        User user = _sql.CreateUser(name);
 
-        // PrintAllStores();
         PrintAllStoresWithEF();
         user.SelectedStore = _sql.SelectStore();
-        //_sql.CreateUser(user.SelectedStore);
         user.SelectedStore.CreateOrder();
         //_sql.Update(user.SelectedStore);
         user.Orders.Add(user.SelectedStore.Orders.Last());
+        //_sql.CreateUser(user.SelectedStore);
         string UserChoice = null;
         do{
           _client.PrintPizzaChoice();
@@ -83,21 +84,39 @@ namespace PizzaWorld.Client
             user.Orders.Last().MakeHawaiianPizza();
             break;
 
-
             case "4":
             UserChoice = AddPizza;
             break;
-
           }
         }while (UserChoice != "4");
 
-        //while user.SelectPizza()
-        //user.Orders.Last().RemoveHawaiianPizza();
-        // user.Orders.Last().RemoveMeatPizza();
-        //user.Orders.Last().RemoveVeggiePizza();
-        //_sql.Update(user.SelectedStore.Orders.Last());
-        System.Console.WriteLine(user.SelectedStore.Orders.Last());
+        string UserChoice2 = null;
+        do{
+          Console.WriteLine("Here is your order and order total.  To order, enter 4.  To delete a pizza, enter 1 (MeaPizza), 2 (VeggiePizza), 3 (Hawaiian Pizza)");
+          System.Console.WriteLine(user);
+          System.Console.WriteLine(user.SelectedStore.Orders.Last());
+          string RemovePizza = Console.ReadLine();
+          switch (RemovePizza)
+          {
+            case "1":
+            user.Orders.Last().RemoveMeatPizza();
+            break;
+
+            case "2":
+            user.Orders.Last().RemoveVeggiePizza();
+            break;
+
+            case "3":
+            user.Orders.Last().RemoveHawaiianPizza();
+            break;
+
+            case "4":
+            UserChoice2 = RemovePizza;
+            break;
+          }
+        }while (UserChoice2 != "4");
         System.Console.WriteLine(user);
+        System.Console.WriteLine(user.SelectedStore.Orders.Last());
         _sql.Update();
       }
     }

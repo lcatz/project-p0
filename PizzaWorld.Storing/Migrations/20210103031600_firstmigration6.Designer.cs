@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PizzaWorld.Storing;
 
 namespace PizzaWorld.Storing.Migrations
 {
     [DbContext(typeof(PizzaWorldContext))]
-    partial class PizzaWorldContextModelSnapshot : ModelSnapshot
+    [Migration("20210103031600_firstmigration6")]
+    partial class firstmigration6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,15 +138,10 @@ namespace PizzaWorld.Storing.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("OrderEntityID")
-                        .HasColumnType("bigint");
-
                     b.Property<long?>("SelectedStoreEntityID")
                         .HasColumnType("bigint");
 
                     b.HasKey("EntityID");
-
-                    b.HasIndex("OrderEntityID");
 
                     b.HasIndex("SelectedStoreEntityID");
 
@@ -173,15 +170,9 @@ namespace PizzaWorld.Storing.Migrations
 
             modelBuilder.Entity("PizzaWorld.Domain.Models.User", b =>
                 {
-                    b.HasOne("PizzaWorld.Domain.Models.Order", "Order")
-                        .WithMany()
-                        .HasForeignKey("OrderEntityID");
-
                     b.HasOne("PizzaWorld.Domain.Models.Store", "SelectedStore")
                         .WithMany()
                         .HasForeignKey("SelectedStoreEntityID");
-
-                    b.Navigation("Order");
 
                     b.Navigation("SelectedStore");
                 });

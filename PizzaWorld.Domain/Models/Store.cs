@@ -16,7 +16,7 @@ namespace PizzaWorld.Domain.Models
     public void CreateOrder()
     {
       Orders.Add(new Order());
-      
+
     }
 
     bool DeleteOrder(Order order)
@@ -37,6 +37,6 @@ namespace PizzaWorld.Domain.Models
         {
           return $"{Name}";
         }
-  
+
   }
 }

@@ -46,12 +46,6 @@ namespace PizzaWorld.Client
         //   // _db.SaveChanges();
         // }
 
-        // public void CreateUser()
-        // {
-        //     _db.Add(new User { Url = "http://blogs.msdn.com/adonet" });
-        //     _db.SaveChanges();
-        //     return
-        // }
 
         public void Update()
         {
@@ -70,10 +64,11 @@ namespace PizzaWorld.Client
 
         }
 
-        public void CreateUser(Store Select)
+        public User CreateUser(string name)
         {
-            _db.Add(new User { SelectedStore = Select });
+            _db.Add(new User { Name = name });
             _db.SaveChanges();
+            return _db.Users.FirstOrDefault(s => s.Name == name);
 
         }
 
