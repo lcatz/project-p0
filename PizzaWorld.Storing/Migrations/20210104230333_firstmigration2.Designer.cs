@@ -10,8 +10,8 @@ using PizzaWorld.Storing;
 namespace PizzaWorld.Storing.Migrations
 {
     [DbContext(typeof(PizzaWorldContext))]
-    [Migration("20210103040353_firstmigration7")]
-    partial class firstmigration7
+    [Migration("20210104230333_firstmigration2")]
+    partial class firstmigration2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

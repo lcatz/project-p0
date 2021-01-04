@@ -10,8 +10,8 @@ using PizzaWorld.Storing;
 namespace PizzaWorld.Storing.Migrations
 {
     [DbContext(typeof(PizzaWorldContext))]
-    [Migration("20210101044923_firstmigration1")]
-    partial class firstmigration1
+    [Migration("20210104210559_firstmigration")]
+    partial class firstmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -84,14 +84,14 @@ namespace PizzaWorld.Storing.Migrations
                     b.Property<long?>("StoresEntityID")
                         .HasColumnType("bigint");
 
-                    b.Property<long?>("UsersEntityID")
+                    b.Property<long?>("UserEntityID")
                         .HasColumnType("bigint");
 
                     b.HasKey("EntityID");
 
                     b.HasIndex("StoresEntityID");
 
-                    b.HasIndex("UsersEntityID");
+                    b.HasIndex("UserEntityID");
 
                     b.ToTable("Orders");
                 });
@@ -135,10 +135,18 @@ namespace PizzaWorld.Storing.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long?>("OrderEntityID")
+                        .HasColumnType("bigint");
+
                     b.Property<long?>("SelectedStoreEntityID")
                         .HasColumnType("bigint");
 
                     b.HasKey("EntityID");
+
+                    b.HasIndex("OrderEntityID");
 
                     b.HasIndex("SelectedStoreEntityID");
 
@@ -158,20 +166,24 @@ namespace PizzaWorld.Storing.Migrations
                         .WithMany("Orders")
                         .HasForeignKey("StoresEntityID");
 
-                    b.HasOne("PizzaWorld.Domain.Models.User", "Users")
+                    b.HasOne("PizzaWorld.Domain.Models.User", null)
                         .WithMany("Orders")
-                        .HasForeignKey("UsersEntityID");
+                        .HasForeignKey("UserEntityID");
 
                     b.Navigation("Stores");
-
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("PizzaWorld.Domain.Models.User", b =>
                 {
+                    b.HasOne("PizzaWorld.Domain.Models.Order", "Order")
+                        .WithMany()
+                        .HasForeignKey("OrderEntityID");
+
                     b.HasOne("PizzaWorld.Domain.Models.Store", "SelectedStore")
                         .WithMany()
                         .HasForeignKey("SelectedStoreEntityID");
+
+                    b.Navigation("Order");
 
                     b.Navigation("SelectedStore");
                 });

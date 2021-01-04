@@ -20,7 +20,7 @@ namespace PizzaWorld.Storing
 
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
-           builder.UseSqlServer("Server=tcp:lcatpizzaworld.database.windows.net,1433;Initial Catalog=lcatp0db;Persist Security Info=False;User ID=sysadmin;Password=Abcd1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+           builder.UseSqlServer("Server=tcp:lcatpizzaworld.database.windows.net,1433;Initial Catalog=lcatPizzaDB;Persist Security Info=False;User ID=sysadmin;Password=Abcd1234;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

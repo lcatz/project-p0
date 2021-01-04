@@ -26,6 +26,11 @@ namespace PizzaWorld.Client
             //             where s.Name == name
             //             select s;
         }
+
+        public User ReadUser(string name)
+        {
+          return _db.Users.FirstOrDefault(s => s.Name == name);
+        }
         public IEnumerable<Order> ReadOrders(Store store)
         {
             var s = ReadOne(store.Name);
