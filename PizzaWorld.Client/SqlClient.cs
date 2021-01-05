@@ -4,6 +4,8 @@ using System.Linq;
 using PizzaWorld.Domain.Abstracts;
 using PizzaWorld.Domain.Models;
 using PizzaWorld.Storing;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace PizzaWorld.Client
 {
@@ -47,9 +49,18 @@ namespace PizzaWorld.Client
 
         public IEnumerable<Order> ReadUserOrders(User user)
         {
-            return _db.Orders
-            .Where(b => b.EntityID == user.EntityID)
-            .ToList();
+          var u = _db.Users
+                    .Include(u => u.Orders)
+                    .ThenInclude(o => o.Pizzas)
+                    .FirstOrDefault(u => u.EntityID == user.EntityID);
+
+          return u.Orders;
+          // var o = u.Orders.Pizzas;
+          // var p = _db.Pizzas.Select(s => s.EntityID == u.Pizzas)
+          // return _db.Orders
+          // .Where(b => b.EntityID == user.EntityID)
+          // .Include()
+          // .ToList();
         }
 
 
