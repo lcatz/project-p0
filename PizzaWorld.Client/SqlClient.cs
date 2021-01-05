@@ -45,6 +45,15 @@ namespace PizzaWorld.Client
             .ToList();
         }
 
+        public IEnumerable<Order> ReadUserOrders(User user)
+        {
+            return _db.Orders
+            .Where(b => b.EntityID == user.EntityID)
+            .ToList();
+        }
+
+
+
         // public void Save(Store store)
         // {
         //    _db.Add(store);
@@ -88,6 +97,7 @@ namespace PizzaWorld.Client
 
             return ReadOne(input);
         }
+
 
     }
 }

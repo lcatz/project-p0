@@ -43,6 +43,14 @@ namespace PizzaWorld.Client
       }
     }
 
+    static void PrintOrdersOfUser(User user)
+    {
+      foreach (var order in _sql.ReadUserOrders(user))
+      {
+        System.Console.WriteLine(order);
+      }
+    }
+
     static void UserView()
     {
 
@@ -65,6 +73,15 @@ namespace PizzaWorld.Client
         {
           Console.WriteLine("Welcome back!  Please enter your user name.");
           string ReturningName = Console.ReadLine();
+          Console.WriteLine($"Hi {ReturningName}! Would you like to view your previous orders (1) or create a new one (2)");
+          string Choice2 = Console.ReadLine();
+          if (Choice2 == "1")
+          {
+            User user = _sql.ReadUser(ReturningName);
+            PrintOrdersOfUser(user);
+          }
+          else if (Choice2 == "2")
+          {
           User user = _sql.ReadUser(ReturningName);
           Console.WriteLine("Please type the name of the store you wish to worder from.");
           PrintAllStoresWithEF();
@@ -124,7 +141,7 @@ namespace PizzaWorld.Client
         System.Console.WriteLine(user.SelectedStore.Orders.Last());
         _sql.Update();
         }
-
+        }
         else if (NewOrReturning == "2")
         {
           Console.WriteLine("Welcome!  Please enter a username");
