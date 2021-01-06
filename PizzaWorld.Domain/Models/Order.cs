@@ -12,6 +12,8 @@ namespace PizzaWorld.Domain.Models
 
     public List<APizzaModel> Pizzas { get; set; }
 
+    //public APizzaModel Pizza { get; set; }
+
     public Store Stores { get; set; }
 
     //public User Users { get; set; }

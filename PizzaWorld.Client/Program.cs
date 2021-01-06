@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PizzaWorld.Domain.Abstracts;
 using PizzaWorld.Domain.Models;
 using PizzaWorld.Domain.Singletons;
 
@@ -37,17 +38,38 @@ namespace PizzaWorld.Client
 
     static void PrintOrdersOfStore(Store store)
     {
-      foreach (var order in _sql.ReadOrders1(store))
+      List<Order> MyList = _sql.ReadOrders1(store).Cast<Order>().ToList();
+      foreach (var order in MyList)
       {
         System.Console.WriteLine(order);
       }
+      Console.WriteLine("Please choose the order you'd like to view");
+      int choice = int.Parse(Console.ReadLine());
+      Order OrderChoice = MyList[choice];
+
+      List<APizzaModel> LastList = _sql.ReadOrderPizzas(OrderChoice).Cast<APizzaModel>().ToList();
+      foreach (var pizza in LastList)
+      {
+        System.Console.WriteLine(pizza);
+      }
+
     }
 
     static void PrintOrdersOfUser(User user)
     {
-      foreach (var order in _sql.ReadUserOrders(user))
+      List<Order> MyList = _sql.ReadUserOrders(user).Cast<Order>().ToList();
+      foreach (var order in MyList)
       {
         System.Console.WriteLine(order);
+      }
+      Console.WriteLine("Please choose the order you'd like to view");
+      int choice = int.Parse(Console.ReadLine());
+      Order OrderChoice = MyList[choice];
+
+      List<APizzaModel> LastList = _sql.ReadOrderPizzas(OrderChoice).Cast<APizzaModel>().ToList();
+      foreach (var pizza in LastList)
+      {
+        System.Console.WriteLine(pizza);
       }
     }
 

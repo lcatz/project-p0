@@ -13,6 +13,8 @@ namespace PizzaWorld.Domain.Abstracts
 
     public decimal Price { get; set; }
 
+    //public Order Order { get; set; }
+
     protected APizzaModel()
     {
       AddName();
@@ -28,5 +30,10 @@ namespace PizzaWorld.Domain.Abstracts
     protected virtual void AddToppings() { }
 
     protected virtual void AddPrice() { }
+
+    public override string ToString()
+        {
+          return $"{Name}";
+        }
   }
 }

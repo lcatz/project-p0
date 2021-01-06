@@ -55,15 +55,16 @@ namespace PizzaWorld.Client
                     .FirstOrDefault(u => u.EntityID == user.EntityID);
 
           return u.Orders;
-          // var o = u.Orders.Pizzas;
-          // var p = _db.Pizzas.Select(s => s.EntityID == u.Pizzas)
-          // return _db.Orders
-          // .Where(b => b.EntityID == user.EntityID)
-          // .Include()
-          // .ToList();
         }
 
+        public IEnumerable<APizzaModel> ReadOrderPizzas(Order order)
+        {
+          var o = _db.Orders
+                    .Include(o => o.Pizzas)
+                    .FirstOrDefault(o => o.EntityID == order.EntityID);
 
+          return o.Pizzas;
+        }
 
         // public void Save(Store store)
         // {
